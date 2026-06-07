@@ -53,9 +53,8 @@ Once open, go to **Kernel → Restart & Run All**. All output figures will be sa
 
 ## Files
 
-| File | Description |
-|---|---|
-| `mvp_notebook.ipynb` | Main Jupyter notebook — all code |
-| `mvp_report.md` | Written MVP report |
-| `requirements.txt` | Python package dependencies |
-| `DATA_402_Proposal.md` | Original project proposal |
+- `mvp_notebook.ipynb`: main Jupyter notebook with all the code
+- `mvp_report.md`: written MVP report
+- `requirements.txt`: Python package dependencies
+- `DATA_402_Proposal.md`: original project proposal
+- `figures/`: all output plots saved here when you run the notebook
