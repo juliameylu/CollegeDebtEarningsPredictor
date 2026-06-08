@@ -1,7 +1,9 @@
 # MVP Report: Predicting Post-Graduation Earnings from College Characteristics
 
 Julia Lu, Rhea Chellani
+
 DATA 402/403 Final Project
+
 June 2026
 
 ---
