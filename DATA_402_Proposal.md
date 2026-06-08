@@ -18,7 +18,8 @@ The problem we are trying to solve is predicting student financial outcomes base
 
 This is interesting because choosing a college is a major financial decision for many students. Students often compare schools based on cost and reputation, but it can be hard to know which factors are actually connected to long-term financial outcomes. By studying this dataset, we hope to better understand what college traits are most associated with debt and earnings.
 
-This project is a supervised machine learning problem because we will use known college data and known financial outcomes to train models. Since our target variable will likely be a numeric value, such as median student debt or median earnings, this will be a regression task. We may use models such as linear regression, ridge regression, or lasso regression to make predictions and compare performance.
+This project is a supervised machine learning problem because we will use known college data and known financial outcomes to train models. Since our target variable will likely be a numeric value, such as median student debt or median earnings, this will be a regression task.
+
 
 ## 4. Dataset
 
@@ -86,31 +87,34 @@ Lasso regression is another appropriate model we could use because it performs b
 
 ## 6. Evaluation Metrics
 
-Describe how you plan to evaluate success.
+Since this project will focus on predicting continuous outcomes from the College Scorecard Dataset, the project will be evaluated using regression metrics. These metrics will measure how accurately the models predict post-graduation earnings based on institutional and demographic variables.
 
-Examples include:
+The dataset will be split into training and testing sets so that model performance can be evaluated on unseen data. Cross-validation may also be used when tuning hyperparameters for ridge and lasso regression.
 
-- Accuracy
-- Precision / Recall
-- F1 score
-- ROC-AUC
-- RMSE
-- MAE
-- Confusion matrices
+1. Root Mean Squared Error (RMSE): RMSE will be one of the primary evaluation metrics because it measures the average magnitude of prediction error while penalizing larger errors more heavily. Since the target variable represents earnings in dollars, RMSE provides an interpretable measure of how far predictions are from actual earnings values. Lower RMSE values indicate better model performance.
+
+2. Mean Absolute Error (MAE): MAE measures the average absolute difference between predicted and actual earnings values. Unlike RMSE, MAE is less sensitive to large outliers, making it useful for understanding the typical prediction error across institutions. Lower MAE values indicate more accurate predictions.
+
+3. R2 : R2 measures the proportion of variation in post-graduation earnings that is explained by the predictors in the model. This metric helps evaluate how well variables such as tuition, graduation rate, admission selectivity, and student demographics explain differences in earnings outcomes across colleges. Higher R2 values indicate stronger explanatory power.
+
+The project will compare linear regression, ridge regression, and lasso regression models using these evaluation metrics. Linear regression will serve as a baseline model, while ridge and lasso regression will help address multicollinearity and reduce overfitting in the large set of predictors.
 
 ## 7. Expected Challenges
 
-Discuss possible difficulties such as:
+One challenge we expect is missing data. The College Scorecard dataset has many values that are missing or privacy-suppressed, especially for earnings, debt, repayment, and smaller schools or programs. Some missing values may appear as NA, NULL, PS, or PrivacySuppressed, so we will need to clean these before building our models. This could also affect which target variable we choose, since we need enough complete data to train and evaluate the models.
 
-- Missing data
-- Class imbalance
-- Overfitting
-- Computational limitations
-- Dataset quality issues
+Class imbalance could be a challenge if we decide to turn a numeric outcome into categories, such as high vs. low earnings or high vs. low default risk. Most schools may fall into the middle range, while extreme outcomes may be much less common. If we keep the project as a regression task, class imbalance will be less of an issue, but we may still need to watch for skewed target values and outliers.
+
+Overfitting is another concern because the dataset has thousands of possible features but only several thousand schools per year. Many variables may also be closely related to each other, such as tuition, net price, debt, and financial aid measures. To reduce overfitting, we plan to select a smaller set of meaningful features and use regularized models like Ridge or Lasso regression.
+There may also be computational limitations because the full raw dataset is large and includes many yearly and field-of-study files. Instead of loading everything at once, we plan to focus on the most recent institution-level file and only keep the columns that are useful for our project. This should make the dataset easier to work with and keep the project realistic for our timeline.
+
+Finally, there may be dataset quality issues. Some features are not available for every year, some outcomes use different measurement windows, and privacy suppression may make the data less complete for smaller institutions. We will also need to be careful about target leakage, meaning we should avoid using variables that directly reveal or are measured after the outcome we are trying to predict.
+
 
 ## 8. Team Responsibilities
 
-Briefly describe how work will be divided between team members.
+Julia will mainly work on the data side of the project. She will help download and understand the College Scorecard dataset, choose the most useful features, clean missing values, prepare the data for modeling, and create visualizations that explain the dataset.
 
-[^1]: If doing a regression task.
-[^2]: If doing a classification task.
+Rhea will mainly work on the modeling side of the project. She will build and test the regression models, compare models like Linear Regression, Ridge Regression, and Lasso Regression, tune the models when needed, and create tables or graphs showing how well each model performs.
+
+Both team members will work together on the final report, presentation, and GitHub submission. They will help interpret the results, explain the main challenges, discuss what the models did well or poorly, and make sure the code and final materials are organized and easy to follow.
