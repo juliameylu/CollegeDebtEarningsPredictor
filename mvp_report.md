@@ -8,7 +8,7 @@ June 2026
 
 ## 1. Introduction
 
-When students pick a college they're also making a long-term financial decision, but it's hard to know upfront how that choice will affect their earnings years later. We wanted to see if we could predict median earnings 10 years after enrollment just from publicly available information about the school itself.
+When students pick a college they're also making a long-term financial decision, but it's hard to know upfront how that choice will affect their earnings in the years later. We wanted to see if we could predict median earnings 10 years after enrollment, just from publicly available information about the school itself.
 
 We used the U.S. Department of Education's College Scorecard dataset and built a regression pipeline using three models we learned in class: linear regression, ridge, and lasso. This is our MVP submission, which means we have a working pipeline with baseline results and a plan for what comes next.
 
@@ -40,11 +40,11 @@ We split 80/20 into train and test sets (4,138 training, 1,035 test) with random
 
 ## 2. Baseline Models
 
-We trained three models, all covered in DATA 402:
+We trained three models:
 
-Linear regression (OLS): no regularization, just minimizes squared error directly. This is our simplest baseline.
+Linear regression (OLS): no regularization, just minimizes squared error directly. This is our most simple baseline.
 
-Ridge regression: adds an L2 penalty that shrinks all coefficients toward zero but never zeros them out. We used RidgeCV with 5-fold cross validation over 100 alpha values to find the best regularization strength. Best alpha: 27.83.
+Ridge regression: adds an L2 penalty that shrinks all coefficients toward zero but is not able to zero them out. We used RidgeCV with 5-fold cross validation over 100 alpha values to find the best regularization strength. Best alpha: 27.83.
 
 Lasso regression: adds an L1 penalty that can actually zero out coefficients completely, which does automatic feature selection. Same CV approach. Best alpha: 4.33.
 
@@ -93,13 +93,13 @@ Train and test RMSE are almost identical across all three models (within about $
 
 ## 5. Progress Toward Final Project
 
-What we have working right now: a full end-to-end pipeline from raw data through preprocessing, model training, evaluation, and visualization. All three baseline models run with cross-validated hyperparameter tuning and we have a solid error analysis with per-school residuals and breakdowns by school type.
+Right now, we have a full, working end-to-end pipeline from raw data through preprocessing, model training, evaluation, and visualization. All three baseline models run with cross-validated hyperparameter tuning and we have a strong error analysis with per-school residuals and breakdowns by school type.
 
 For the final project we're planning to:
 
 - log-transform the target to address the heteroscedasticity in the residuals
 - join with the field-of-study dataset to add program mix features (what % of students are in STEM, health, etc.)
-- try SVM regression and MLP neural network, both from DATA 402
+- try SVM regression and MLP neural network
 - also try predicting median debt (GRAD_DEBT_MDN) as a second target variable
 - add state or region indicators to pick up on regional job market effects
 - experiment with interaction terms between tuition and graduation rate
