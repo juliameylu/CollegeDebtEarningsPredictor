@@ -3,5 +3,4 @@ College_Scorecard_Raw_Data_03232026/
 .DS_Store
 __pycache__/
 .ipynb_checkpoints/
-minimal_viable_project_guidelines.md
-final_project_report_and_presentation_guidelines.md
+*.md
